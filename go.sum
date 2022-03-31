@@ -4,8 +4,8 @@ github.com/gofiber/fiber/v2 v2.29.0 h1:wopU1kXxdD9XxvQqYd1vSWMGu2PiZN0yy+DojygTR
 github.com/gofiber/fiber/v2 v2.29.0/go.mod h1:1Ega6O199a3Y7yDGuM9FyXDPYQfv+7/y48wl6WCwUF4=
 github.com/klauspost/compress v1.15.0 h1:xqfchp4whNFxn5A4XFyyYtitiWI8Hy5EW59jEwcyL6U=
 github.com/klauspost/compress v1.15.0/go.mod h1:/3/Vjq9QcHkK5uEr5lBEmyoZ1iFhe47etQ6QUkpK6sk=
-github.com/realPy/hogosuru v1.2.0 h1:DbS3fM2SmfGwRw6Wht0zQQ9lTsYeckn/mVMqxKg3jQU=
-github.com/realPy/hogosuru v1.2.0/go.mod h1:N0uMX+J8lYvWZLjKoCRpAXJMvkvAuwj9p1Qev8rC6QA=
+github.com/realPy/hogosuru v1.3.1-0.20220331170637-ee8533a3b579 h1:131lgQCp/nMUvLVDAfOxMOK+JUcspePMDR5+/W5QCvk=
+github.com/realPy/hogosuru v1.3.1-0.20220331170637-ee8533a3b579/go.mod h1:N0uMX+J8lYvWZLjKoCRpAXJMvkvAuwj9p1Qev8rC6QA=
 github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6KllzawFIhcdPw=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
 github.com/valyala/fasthttp v1.34.0 h1:d3AAQJ2DRcxJYHm7OXNXtXt2as1vMDfxeIcFvhmGGm4=

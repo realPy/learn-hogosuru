@@ -3,10 +3,13 @@ module learn-hogosuru
 go 1.17
 
 require (
+	github.com/gofiber/fiber/v2 v2.29.0
+	github.com/realPy/hogosuru v1.3.1-0.20220331170637-ee8533a3b579
+)
+
+require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
-	github.com/gofiber/fiber/v2 v2.29.0 // indirect
 	github.com/klauspost/compress v1.15.0 // indirect
-	github.com/realPy/hogosuru v1.2.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.34.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
