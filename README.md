@@ -1,4 +1,4 @@
-# Examples use in Hogosuru documentation https://hogosuru.v-ip.fr/
+# Examples use for https://hogosuru.v-ip.fr/
 
 
 ## Dynamic Content
