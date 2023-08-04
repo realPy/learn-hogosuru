@@ -4,10 +4,10 @@ import (
 	"fmt"
 
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/fetch"
-	"github.com/realPy/hogosuru/json"
-	"github.com/realPy/hogosuru/promise"
-	"github.com/realPy/hogosuru/response"
+	"github.com/realPy/hogosuru/base/fetch"
+	"github.com/realPy/hogosuru/base/json"
+	"github.com/realPy/hogosuru/base/promise"
+	"github.com/realPy/hogosuru/base/response"
 )
 
 func main() {
@@ -17,7 +17,7 @@ func main() {
 	var fetchOpts map[string]interface{} = map[string]interface{}{"method": "GET", "headers": httpHeaders}
 
 	//Start promise and wait result
-	if f, err := fetch.New("https://httpbin.org/get", fetchOpts); hogosuru.AssertErr(err) {
+	if f, err := fetch.New("mockjson/get.json", fetchOpts); hogosuru.AssertErr(err) {
 		f.Then(func(r response.Response) *promise.Promise {
 			//when header is ready the function is execute
 			if status, err := r.Status(); hogosuru.AssertErr(err) {

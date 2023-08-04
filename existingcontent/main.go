@@ -4,13 +4,12 @@ import (
 	"errors"
 
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/console"
-	"github.com/realPy/hogosuru/document"
-	"github.com/realPy/hogosuru/element"
-	"github.com/realPy/hogosuru/event"
-	"github.com/realPy/hogosuru/htmlbuttonelement"
-	"github.com/realPy/hogosuru/htmlspanelement"
-	"github.com/realPy/hogosuru/node"
+	"github.com/realPy/hogosuru/base/console"
+	"github.com/realPy/hogosuru/base/document"
+	"github.com/realPy/hogosuru/base/element"
+	"github.com/realPy/hogosuru/base/event"
+	"github.com/realPy/hogosuru/base/htmlbuttonelement"
+	"github.com/realPy/hogosuru/base/htmlspanelement"
 )
 
 var domhtml = `<div>
@@ -21,7 +20,7 @@ var domhtml = `<div>
 func GetSpanByID(elemsearch element.Element, ID string) (htmlspanelement.HtmlSpanElement, error) {
 	var e htmlspanelement.HtmlSpanElement
 	var err error
-	var elem node.Node
+	var elem element.Element
 	var elemInstance interface{}
 	var ok bool
 	if elem, err = elemsearch.QuerySelector(ID); hogosuru.AssertErr(err) {
@@ -40,7 +39,7 @@ func GetSpanByID(elemsearch element.Element, ID string) (htmlspanelement.HtmlSpa
 func GetButtonByID(elemsearch element.Element, ID string) (htmlbuttonelement.HtmlButtonElement, error) {
 	var e htmlbuttonelement.HtmlButtonElement
 	var err error
-	var elem node.Node
+	var elem element.Element
 	var elemInstance interface{}
 	var ok bool
 	if elem, err = elemsearch.QuerySelector(ID); hogosuru.AssertErr(err) {

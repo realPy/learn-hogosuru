@@ -4,19 +4,18 @@ import (
 	"errors"
 
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/element"
-	"github.com/realPy/hogosuru/htmlanchorelement"
-	"github.com/realPy/hogosuru/htmlbuttonelement"
-	"github.com/realPy/hogosuru/htmldivelement"
-	"github.com/realPy/hogosuru/htmlspanelement"
-	"github.com/realPy/hogosuru/htmltemplateelement"
-	"github.com/realPy/hogosuru/node"
+	"github.com/realPy/hogosuru/base/element"
+	"github.com/realPy/hogosuru/base/htmlanchorelement"
+	"github.com/realPy/hogosuru/base/htmlbuttonelement"
+	"github.com/realPy/hogosuru/base/htmldivelement"
+	"github.com/realPy/hogosuru/base/htmlspanelement"
+	"github.com/realPy/hogosuru/base/htmltemplateelement"
 )
 
 func GetTemplateBySelector(elemsearch element.Element, selector string) (htmltemplateelement.HtmlTemplateElement, error) {
 	var e htmltemplateelement.HtmlTemplateElement
 	var err error
-	var elem node.Node
+	var elem element.Element
 	var elemInstance interface{}
 	var ok bool
 	if elem, err = elemsearch.QuerySelector(selector); hogosuru.AssertErr(err) {
@@ -35,7 +34,7 @@ func GetTemplateBySelector(elemsearch element.Element, selector string) (htmltem
 func GetDivBySelector(elemsearch element.Element, selector string) (htmldivelement.HtmlDivElement, error) {
 	var e htmldivelement.HtmlDivElement
 	var err error
-	var elem node.Node
+	var elem element.Element
 	var elemInstance interface{}
 	var ok bool
 	if elem, err = elemsearch.QuerySelector(selector); hogosuru.AssertErr(err) {
@@ -54,7 +53,7 @@ func GetDivBySelector(elemsearch element.Element, selector string) (htmldiveleme
 func GetSpanBySelector(elemsearch element.Element, selector string) (htmlspanelement.HtmlSpanElement, error) {
 	var e htmlspanelement.HtmlSpanElement
 	var err error
-	var elem node.Node
+	var elem element.Element
 	var elemInstance interface{}
 	var ok bool
 	if elem, err = elemsearch.QuerySelector(selector); hogosuru.AssertErr(err) {
@@ -73,7 +72,7 @@ func GetSpanBySelector(elemsearch element.Element, selector string) (htmlspanele
 func GetButtonBySelector(elemsearch element.Element, selector string) (htmlbuttonelement.HtmlButtonElement, error) {
 	var e htmlbuttonelement.HtmlButtonElement
 	var err error
-	var elem node.Node
+	var elem element.Element
 	var elemInstance interface{}
 	var ok bool
 	if elem, err = elemsearch.QuerySelector(selector); hogosuru.AssertErr(err) {
@@ -92,7 +91,7 @@ func GetButtonBySelector(elemsearch element.Element, selector string) (htmlbutto
 func GetAnchorBySelector(elemsearch element.Element, selector string) (htmlanchorelement.HtmlAnchorElement, error) {
 	var e htmlanchorelement.HtmlAnchorElement
 	var err error
-	var elem node.Node
+	var elem element.Element
 	var elemInstance interface{}
 	var ok bool
 	if elem, err = elemsearch.QuerySelector(selector); hogosuru.AssertErr(err) {

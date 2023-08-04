@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/console"
-	"github.com/realPy/hogosuru/document"
-	"github.com/realPy/hogosuru/event"
-	"github.com/realPy/hogosuru/htmlbuttonelement"
-	"github.com/realPy/hogosuru/htmldivelement"
-	"github.com/realPy/hogosuru/htmlspanelement"
+	"github.com/realPy/hogosuru/base/console"
+	"github.com/realPy/hogosuru/base/document"
+	"github.com/realPy/hogosuru/base/event"
+	"github.com/realPy/hogosuru/base/htmlbuttonelement"
+	"github.com/realPy/hogosuru/base/htmldivelement"
+	"github.com/realPy/hogosuru/base/htmlspanelement"
 )
 
 func main() {

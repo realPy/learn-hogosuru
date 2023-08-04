@@ -1,11 +1,20 @@
 package main
 
 import (
+	"errors"
+
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/document"
-	"github.com/realPy/hogosuru/event"
-	"github.com/realPy/hogosuru/htmlanchorelement"
-	"github.com/realPy/hogosuru/htmllinkelement"
+	"github.com/realPy/hogosuru/base/document"
+	"github.com/realPy/hogosuru/base/element"
+	"github.com/realPy/hogosuru/base/event"
+	"github.com/realPy/hogosuru/base/htmlanchorelement"
+	"github.com/realPy/hogosuru/base/htmlbuttonelement"
+	"github.com/realPy/hogosuru/base/htmldivelement"
+	"github.com/realPy/hogosuru/base/htmllinkelement"
+	"github.com/realPy/hogosuru/base/htmlspanelement"
+	"github.com/realPy/hogosuru/base/htmltemplateelement"
+	"github.com/realPy/hogosuru/base/node"
+	"github.com/realPy/hogosuru/htmlstruct"
 )
 
 var domtemplate = `<div class="dropdown" id="dropdowntest">
@@ -31,9 +40,43 @@ var domtemplate = `<div class="dropdown" id="dropdowntest">
 
 var arraydynamiccontent []string = []string{"World", "Me", "Cat"}
 
+type DropDownTemplate struct {
+	Item htmlanchorelement.HtmlAnchorElement `hogosuru:"#itemtpl"`
+}
+
+type DropDownTitem struct {
+	Item htmlspanelement.HtmlSpanElement `hogosuru:"#itemtext"`
+}
+
+type MainWindow struct {
+	DropdownTest         htmldivelement.HtmlDivElement           `hogosuru:"#dropdowntest"`
+	DropdownButton       htmlbuttonelement.HtmlButtonElement     `hogosuru:"#dropdownbutton"`
+	DropdownItemsContent htmldivelement.HtmlDivElement           `hogosuru:"#dropdownitemscontent"`
+	Mytemplatedropdown   htmltemplateelement.HtmlTemplateElement `hogosuru:"#mytemplatedropdown"`
+	Itemtemplate         DropDownTemplate
+}
+
+func ClonableStruct(doc document.Document, root node.Node, i interface{}) (element.Element, error) {
+	clone, err := doc.ImportNode(root.Node_(), true)
+	if err != nil {
+		return element.Element{}, err
+	}
+	el, ok := clone.(element.ElementFrom)
+	if !ok {
+		return element.Element{}, errors.New("can't clone struct: not an element")
+	}
+
+	clonelement := el.Element_()
+	err = htmlstruct.Unmarshal(clonelement, i)
+	if err != nil {
+		panic(err)
+	}
+	return clonelement, err
+}
+
 func main() {
 	hogosuru.Init()
-
+	var w MainWindow
 	// we get the current document
 	if doc, err := document.New(); hogosuru.AssertErr(err) {
 
@@ -59,54 +102,34 @@ func main() {
 		}
 
 		if body, err := doc.Body(); hogosuru.AssertErr(err) {
+
 			//we insert the html code
 			body.InsertAdjacentHTML("beforeend", domtemplate)
+			htmlstruct.Unmarshal(doc, &w)
 
-			if dropdowntest, err := GetDivBySelector(body.Element, "#dropdowntest"); hogosuru.AssertErr(err) {
-				if dropdownbutton, err := GetButtonBySelector(body.Element, "#dropdownbutton"); hogosuru.AssertErr(err) {
-					dropdownbutton.OnClick(func(e event.Event) {
-						//when click we open or close the drop down
-						if list, err := dropdowntest.ClassList(); hogosuru.AssertErr(err) {
-							list.Toggle("is-active")
-						}
-
-					})
+			w.DropdownButton.OnClick(func(e event.Event) {
+				//when click we open or close the drop down
+				if list, err := w.DropdownTest.ClassList(); hogosuru.AssertErr(err) {
+					list.Toggle("is-active")
 				}
 
-			}
+			})
 
-			if contentitems, err := GetDivBySelector(body.Element, "#dropdownitemscontent"); hogosuru.AssertErr(err) {
-				contentitems.SetTextContent("")
-				if t, err := GetTemplateBySelector(body.Element, "#mytemplatedropdown"); hogosuru.AssertErr(err) {
-					//now we want the content of the template to duplicate it
-					if fragment, err := t.Content(); hogosuru.AssertErr(err) {
-						if cloneNode, err := fragment.GetElementById("itemtpl"); hogosuru.AssertErr(err) {
+			w.DropdownItemsContent.SetTextContent("")
 
-							//we loop for each content
-							for _, name := range arraydynamiccontent {
-								if clone, err := doc.ImportNode(cloneNode.Node, true); hogosuru.AssertErr(err) {
-									if a, ok := clone.(htmlanchorelement.HtmlAnchorElement); ok {
+			if fragment, err := w.Mytemplatedropdown.Content(); hogosuru.AssertErr(err) {
+				htmlstruct.Unmarshal(fragment, &w.Itemtemplate)
 
-										//we search the span txtContent to modify value
-
-										if spantxt, err := GetSpanBySelector(a.Element, "#itemtext"); hogosuru.AssertErr(err) {
-											spantxt.SetTextContent(name)
-										}
-
-										contentitems.Append(a.Element)
-
-									}
-								}
-							}
-
-						}
-
+				for _, name := range arraydynamiccontent {
+					var item DropDownTitem
+					rootnode, err := ClonableStruct(doc, w.Itemtemplate.Item.Node, &item)
+					if err == nil {
+						item.Item.SetTextContent(name)
+						w.DropdownItemsContent.Append(rootnode)
 					}
 				}
 
 			}
-
-			//we search element like contents to loop the data and template
 
 		}
 

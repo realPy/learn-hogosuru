@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/json"
+	"github.com/realPy/hogosuru/base/json"
 )
 
 var myjsonstr = `{

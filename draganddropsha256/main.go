@@ -6,13 +6,14 @@ import (
 	"fmt"
 
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/blob"
-	"github.com/realPy/hogosuru/document"
-	"github.com/realPy/hogosuru/dragevent"
-	"github.com/realPy/hogosuru/file"
-	"github.com/realPy/hogosuru/htmldivelement"
-	"github.com/realPy/hogosuru/htmllinkelement"
-	"github.com/realPy/hogosuru/promise"
+	"github.com/realPy/hogosuru/base/blob"
+	"github.com/realPy/hogosuru/base/document"
+	"github.com/realPy/hogosuru/base/dragevent"
+	"github.com/realPy/hogosuru/base/file"
+	"github.com/realPy/hogosuru/base/htmldivelement"
+	"github.com/realPy/hogosuru/base/htmllinkelement"
+	"github.com/realPy/hogosuru/base/promise"
+	"github.com/realPy/hogosuru/keyobservable"
 )
 
 type HashCalculate struct {
@@ -37,7 +38,7 @@ func sha256File(f file.File) {
 
 		sha256result = hex.EncodeToString(hashsha256.Sum(nil))
 
-		hogosuru.KeyObservable().Set("newhash", HashCalculate{name: f.Name_(), hash: sha256result}, false)
+		keyobservable.KeyObservable().Set("newhash", HashCalculate{name: f.Name_(), hash: sha256result}, false)
 		return nil
 	}, nil)
 }
@@ -96,7 +97,7 @@ func main() {
 
 				})
 
-				hogosuru.KeyObservable().RegisterFunc("newhash", func(value interface{}) {
+				keyobservable.KeyObservable().RegisterFunc("newhash", func(value interface{}) {
 
 					if h, ok := value.(HashCalculate); ok {
 						if div, err := htmldivelement.New(doc); hogosuru.AssertErr(err) {

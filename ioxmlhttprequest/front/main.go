@@ -5,13 +5,13 @@ import (
 	"net/url"
 
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/document"
-	"github.com/realPy/hogosuru/event"
-	"github.com/realPy/hogosuru/formdata"
-	"github.com/realPy/hogosuru/htmlbuttonelement"
-	"github.com/realPy/hogosuru/htmldivelement"
-	"github.com/realPy/hogosuru/htmllinkelement"
-	"github.com/realPy/hogosuru/xmlhttprequest"
+	"github.com/realPy/hogosuru/base/document"
+	"github.com/realPy/hogosuru/base/event"
+	"github.com/realPy/hogosuru/base/formdata"
+	"github.com/realPy/hogosuru/base/htmlbuttonelement"
+	"github.com/realPy/hogosuru/base/htmldivelement"
+	"github.com/realPy/hogosuru/base/htmllinkelement"
+	"github.com/realPy/hogosuru/base/xmlhttprequest"
 )
 
 func OnClickButton() {

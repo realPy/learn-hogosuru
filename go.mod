@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/gofiber/fiber/v2 v2.29.0
-	github.com/realPy/hogosuru v1.3.1-0.20220331170637-ee8533a3b579
+	github.com/realPy/hogosuru v1.4.1-0.20230728185626-e70160f0b243
 )
 
 require (

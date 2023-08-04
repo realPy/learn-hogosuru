@@ -4,7 +4,7 @@ import (
 	"syscall/js"
 
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/promise"
+	"github.com/realPy/hogosuru/base/promise"
 )
 
 func main() {

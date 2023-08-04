@@ -2,11 +2,12 @@ package main
 
 import (
 	"github.com/realPy/hogosuru"
-	"github.com/realPy/hogosuru/document"
-	"github.com/realPy/hogosuru/htmlbuttonelement"
-	"github.com/realPy/hogosuru/htmldivelement"
-	"github.com/realPy/hogosuru/htmllinkelement"
-	"github.com/realPy/hogosuru/promise"
+	"github.com/realPy/hogosuru/base/document"
+	"github.com/realPy/hogosuru/base/htmlbuttonelement"
+	"github.com/realPy/hogosuru/base/htmldivelement"
+	"github.com/realPy/hogosuru/base/htmllinkelement"
+	"github.com/realPy/hogosuru/base/promise"
+	"github.com/realPy/hogosuru/keyobservable"
 )
 
 func main() {
@@ -40,14 +41,14 @@ func main() {
 
 				if buttondanger, err := htmlbuttonelement.New(doc); hogosuru.AssertErr(err) {
 
-					buttondanger.SetTextContent("Danger")
+					buttondanger.SetTextContent("Danger wait 5s....")
 					//we get the class list attribute
 					if list, err := buttondanger.ClassList(); hogosuru.AssertErr(err) {
 						list.Add("button")
 						list.Add("is-danger")
 					}
 
-					hogosuru.KeyObservable().RegisterFunc("dangertextbutton", func(value interface{}) {
+					keyobservable.KeyObservable().RegisterFunc("dangertextbutton", func(value interface{}) {
 
 						if textbutton, ok := value.(string); ok {
 							buttondanger.SetTextContent(textbutton)
@@ -71,7 +72,7 @@ func main() {
 	if w1, err := promise.SetTimeout(5000); hogosuru.AssertErr(err) {
 		w1.Then(func(i interface{}) *promise.Promise {
 
-			hogosuru.KeyObservable().Set("dangertextbutton", "Hello World", false)
+			keyobservable.KeyObservable().Set("dangertextbutton", "Boom!", false)
 
 			return nil
 		}, nil)
